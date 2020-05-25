@@ -13,11 +13,12 @@
   overflow-y: hidden;
 }
 
-main {
+main.no-extras {
   height: 100vh;
   display: grid;
   grid-template-columns: 50% 50%;
   grid-template-rows: 100%;
+  font-family: 'Balsamiq Sans', sans-serif;
 }
 
 .box-left {
@@ -49,4 +50,18 @@ main {
   margin-top: 15vh;
   height: 70vh;
   background: rgba(0,0,0, .3);
+  color: white;
+  font-size: 30px;
+  text-align: center;
+}
+
+/* Buttons */
+.btn.btn-style {
+  color: var(--black);
+  background-color: var(--white);
+  border-color: var(--white);
+  width: 80%;
+  height: 6vh;
+  margin: 2vh;
+  font-size: 4vh;
 }

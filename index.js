@@ -6,25 +6,47 @@ import ReactDOM from "react-dom";
 
 function Title(props) {
   return (
-    <div class="title">
+    <div className="title">
       <h1>Metronome</h1>
     </div>
   )
 }
 
 function Halves(props) {
+  console.log(props.bpm);
+  // let buttons = GenerateButtonsByFive(props.bpm);
+  let buttons = <GenerateButtonsByFive bpm={props.bpm} />
+  console.log(buttons);
   return [
-    <div class="box-left">
-      <div class="box-content">
-        <div>Curr: {props.bpm}</div>
+    <div key="d1" className="box-left">
+      <div className="box-content">
+        <GenerateButtonsByFive bpm={props.bpm} />
       </div>
     </div>,
-    <div class="box-right">
-      <div class="box-content">
+    <div key="d2" className="box-right">
+      <div className="box-content">
         right
       </div>
     </div>
   ]
+}
+
+function GenerateButtonsByFive(props) {
+  console.log(props.bpm);
+  console.log("gernerate " + props.bpm);
+  let start=props.bpm;
+  let buttons = [];
+  for (let i= (start-15); i <= (start+15); i +=5) {
+    buttons.push(
+      <div key={"b" + i}>
+       <button type="button" className="btn btn-style">{i} BPM</button>
+      </div>
+    );
+    console.log("I: " + i);
+  }
+  return (
+    <div>{buttons}</div>
+  )
 }
 
 class App extends React.Component {
@@ -40,7 +62,7 @@ class App extends React.Component {
     let halves = <Halves bpm={this.state.bpm} />
 
     return (
-      <main>
+      <main className="no-extras">
         {title}
         {halves}
       </main>
