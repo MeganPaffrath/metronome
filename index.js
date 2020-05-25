@@ -6,14 +6,25 @@ import ReactDOM from "react-dom";
 
 function Title(props) {
   return (
-    <div>Title</div>
+    <div class="title">
+      <h1>Metronome</h1>
+    </div>
   )
 }
 
 function Halves(props) {
-  return (
-    <div>Curr: {props.bpm}</div>
-  )
+  return [
+    <div class="box-left">
+      <div class="box-content">
+        <div>Curr: {props.bpm}</div>
+      </div>
+    </div>,
+    <div class="box-right">
+      <div class="box-content">
+        right
+      </div>
+    </div>
+  ]
 }
 
 class App extends React.Component {
@@ -29,10 +40,10 @@ class App extends React.Component {
     let halves = <Halves bpm={this.state.bpm} />
 
     return (
-      <div>
+      <main>
         {title}
         {halves}
-      </div>
+      </main>
     );
   }
 }
