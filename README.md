@@ -21,3 +21,8 @@
 - https://codepen.io/StudentOfJS/pen/dzjPwP/
 - using react sound:
   * if not, uninstall react-sound
+
+* Sound support:
+  * `npm i react-sound`
+  * `npm i uifx`
+    * https://alligator.io/react/adding-sound-to-your-react-apps/

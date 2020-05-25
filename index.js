@@ -3,8 +3,22 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Sound from "react-sound";
+import UIfx from 'uifx';
+
+// Ticks
 import tick1 from "./src/audio/tick1.wav";
 import tick from "./src/audio/tick2.wav";
+
+let vol = 0.6;
+console.log(typeof volume);
+
+const tickFirst = new UIfx(
+  tick1,
+  {
+    volume: 1.0,
+    throttleMs: 100
+  }
+)
 
 
 
@@ -22,12 +36,12 @@ function Halves(props) {
   return [
     <div key="d1" className="box-left">
       <div className="box-content">
-        <GenerateButtonsByFive bpm={props.bpm} />
+        <GenerateButtonsByFive bpm={props.bpm} beatOne={props.firstBeat}/>
       </div>
     </div>,
     <div key="d2" className="box-right">
       <div className="box-content">
-        <GenerateButtonsByOne bpm={props.bpm} />
+        <GenerateButtonsByOne bpm={props.bpm} beatOne={props.firstBeat}/>
       </div>
     </div>
   ]
@@ -41,7 +55,7 @@ function GenerateButtonsByFive(props) {
   for (let i= (start-15); i <= (start+15); i +=5) {
     buttons.push(
       <div key={"b" + i}>
-       <button type="button" className="btn btn-style">{i} BPM</button>
+       <button type="button" onClick={tickFirst.play()} className="btn btn-style">{i} BPM</button>
       </div>
     );
   }
@@ -53,6 +67,8 @@ function GenerateButtonsByFive(props) {
 // onClick={this.metronome.bind(props.bpm)}
 function GenerateButtonsByOne(props) {
   let bpmVal = props.bpm;
+  let sound = props.firstBeat;
+  // sound.play();
   console.log("bpmVal: " + bpmVal);
   console.log("gernerate " + props.bpm);
   let start=props.bpm;
@@ -60,7 +76,7 @@ function GenerateButtonsByOne(props) {
   for (let i= (start-3); i <= (start+3); i +=1) {
     buttons.push(
       <div key={"b" + i}>
-       <button type="button" onClick={metronome.bind(bpmVal)} className="btn btn-style">{i} BPM</button>
+       <button type="button" onClick={tickFirst.play()} onClick={metronome.bind(props)} className="btn btn-style">{i} BPM</button>
       </div>
     );
   }
@@ -69,8 +85,8 @@ function GenerateButtonsByOne(props) {
   )
 }
 
-function metronome() {
-  let currBPM = this;
+function metronome(props) {
+  let currBPM = props.bpm;
 
   console.log("hi1");
 
@@ -105,7 +121,14 @@ class App extends React.Component {
   constructor(props) {
         super(props); // Must call
         this.state = {
-          bpm: 100
+          bpm: 100,
+          firstBeat: new UIfx(
+            tick1,
+            {
+              volume: 1.0,
+              throttleMs: 100
+            }
+          )
           // tick1: <Sound url={tick1}
           //   playStatus={Sound.status.PLAYING}
           //   playFromPosition={0 /* in milliseconds */}/>
@@ -113,9 +136,11 @@ class App extends React.Component {
     }
 
   render() {
+
+
     const title = <Title />;
-    let halves = <Halves bpm={this.state.bpm} />
-    
+    let halves = <Halves bpm={this.state.bpm} beatOne = {this.state.firstBeat} />
+
     return (
       <main className="no-extras">
         {title}
