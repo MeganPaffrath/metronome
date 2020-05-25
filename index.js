@@ -2,6 +2,10 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
+// import Sound from "react-sound";
+import tick1 from "./src/audio/tick1.wav";
+import tick from "./src/audio/tick2.wav";
+
 
 
 function Title(props) {
@@ -48,14 +52,15 @@ function GenerateButtonsByFive(props) {
 
 // onClick={this.metronome.bind(props.bpm)}
 function GenerateButtonsByOne(props) {
-  console.log(props.bpm);
+  let bpmVal = props.bpm;
+  console.log("bpmVal: " + bpmVal);
   console.log("gernerate " + props.bpm);
   let start=props.bpm;
   let buttons = [];
   for (let i= (start-3); i <= (start+3); i +=1) {
     buttons.push(
       <div key={"b" + i}>
-       <button type="button" className="btn btn-style">{i} BPM</button>
+       <button type="button" onClick={metronome.bind(bpmVal)} className="btn btn-style">{i} BPM</button>
       </div>
     );
   }
@@ -64,30 +69,35 @@ function GenerateButtonsByOne(props) {
   )
 }
 
-function metronome(props) {
-  currBPM = props.bpm;
+function metronome() {
+  let currBPM = this;
 
-  var tick1 = new Audio("src/audio/tick1.wav");
-  var tick = new Audio("src/audio/tick2.wav");
+  console.log("hi1");
+
+  console.log(tick1);
+  var tickOne = new Audio({tick1});
+  var tickNorm = new Audio({tick});
   console.log("click");
 
-  let timebetween = 60 / bpm * 1000;
+  let timebetween = 60 / currBPM * 1000;
 
+  console.log("currBPM: " + this);
   console.log(timebetween);
+  console.log("b");
 
   let beat = 1;
 
-  let beats = setInterval(function() {
-    if (currBPM != bpm) {
-      clearInterval(beats);
-    }
-    if (beat%4 == 1) {
-      tick1.play(tick1);
-    } else {
-      tick.play(tick);
-    }
-    beat++;
-  }, timebetween);
+  // <Sound {tickOne}/>;
+  tickOne.play(tickOne);
+
+  // let beats = setInterval(function() {
+  //   if (beat%4 == 1) {
+  //     tick1.play(tick1);
+  //   } else {
+  //     tick.play(tick);
+  //   }
+  //   beat++;
+  // }, timebetween);
 }
 
 class App extends React.Component {
