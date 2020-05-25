@@ -6,7 +6,7 @@ function metronome(bpm) {
 
   var tick1 = new Audio("src/audio/tick1.wav");
   var tick = new Audio("src/audio/tick2.wav");
-  console.log("click");
+  console.log("click wrong func");
 
   let timebetween = 60 / bpm * 1000;
 

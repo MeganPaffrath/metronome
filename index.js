@@ -40,13 +40,13 @@ function GenerateButtonsByFive(props) {
        <button type="button" className="btn btn-style">{i} BPM</button>
       </div>
     );
-    console.log("I: " + i);
   }
   return (
     <div>{buttons}</div>
   )
 }
 
+// onClick={this.metronome.bind(props.bpm)}
 function GenerateButtonsByOne(props) {
   console.log(props.bpm);
   console.log("gernerate " + props.bpm);
@@ -58,11 +58,36 @@ function GenerateButtonsByOne(props) {
        <button type="button" className="btn btn-style">{i} BPM</button>
       </div>
     );
-    console.log("I: " + i);
   }
   return (
     <div>{buttons}</div>
   )
+}
+
+function metronome(props) {
+  currBPM = props.bpm;
+
+  var tick1 = new Audio("src/audio/tick1.wav");
+  var tick = new Audio("src/audio/tick2.wav");
+  console.log("click");
+
+  let timebetween = 60 / bpm * 1000;
+
+  console.log(timebetween);
+
+  let beat = 1;
+
+  let beats = setInterval(function() {
+    if (currBPM != bpm) {
+      clearInterval(beats);
+    }
+    if (beat%4 == 1) {
+      tick1.play(tick1);
+    } else {
+      tick.play(tick);
+    }
+    beat++;
+  }, timebetween);
 }
 
 class App extends React.Component {
@@ -71,9 +96,7 @@ class App extends React.Component {
         this.state = {bpm: 100};
     }
 
-
   render() {
-
     const title = <Title />;
     let halves = <Halves bpm={this.state.bpm} />
 
