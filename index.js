@@ -8,15 +8,13 @@ function Title(props) {
   return (
     <div className="title">
       <h1>Metronome</h1>
+      <h2>meganpaffrath.com</h2>
     </div>
   )
 }
 
 function Halves(props) {
   console.log(props.bpm);
-  // let buttons = GenerateButtonsByFive(props.bpm);
-  let buttons = <GenerateButtonsByFive bpm={props.bpm} />
-  console.log(buttons);
   return [
     <div key="d1" className="box-left">
       <div className="box-content">
@@ -25,7 +23,7 @@ function Halves(props) {
     </div>,
     <div key="d2" className="box-right">
       <div className="box-content">
-        right
+        <GenerateButtonsByOne bpm={props.bpm} />
       </div>
     </div>
   ]
@@ -37,6 +35,24 @@ function GenerateButtonsByFive(props) {
   let start=props.bpm;
   let buttons = [];
   for (let i= (start-15); i <= (start+15); i +=5) {
+    buttons.push(
+      <div key={"b" + i}>
+       <button type="button" className="btn btn-style">{i} BPM</button>
+      </div>
+    );
+    console.log("I: " + i);
+  }
+  return (
+    <div>{buttons}</div>
+  )
+}
+
+function GenerateButtonsByOne(props) {
+  console.log(props.bpm);
+  console.log("gernerate " + props.bpm);
+  let start=props.bpm;
+  let buttons = [];
+  for (let i= (start-3); i <= (start+3); i +=1) {
     buttons.push(
       <div key={"b" + i}>
        <button type="button" className="btn btn-style">{i} BPM</button>
