@@ -1,3 +1,4 @@
+//jshint esversion: 6
 let currBPM = 0;
 
 function metronome(bpm) {
