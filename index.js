@@ -2,7 +2,7 @@
 
 import React from "react";
 import ReactDOM from "react-dom";
-// import Sound from "react-sound";
+import Sound from "react-sound";
 import tick1 from "./src/audio/tick1.wav";
 import tick from "./src/audio/tick2.wav";
 
@@ -88,7 +88,8 @@ function metronome() {
   let beat = 1;
 
   // <Sound {tickOne}/>;
-  tickOne.play(tickOne);
+
+  // tickOne.play(tickOne);
 
   // let beats = setInterval(function() {
   //   if (beat%4 == 1) {
@@ -103,13 +104,18 @@ function metronome() {
 class App extends React.Component {
   constructor(props) {
         super(props); // Must call
-        this.state = {bpm: 100};
+        this.state = {
+          bpm: 100
+          // tick1: <Sound url={tick1}
+          //   playStatus={Sound.status.PLAYING}
+          //   playFromPosition={0 /* in milliseconds */}/>
+        };
     }
 
   render() {
     const title = <Title />;
     let halves = <Halves bpm={this.state.bpm} />
-
+    
     return (
       <main className="no-extras">
         {title}

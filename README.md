@@ -16,3 +16,8 @@
 
 | FOOT: 15vh
 ```
+
+* Possible solutions:
+- https://codepen.io/StudentOfJS/pen/dzjPwP/
+- using react sound:
+  * if not, uninstall react-sound
