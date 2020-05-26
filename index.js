@@ -106,13 +106,19 @@ function metronome(props) {
   console.log("tickOne = " + tickOne);
   // var tickNorm = new Audio({tick});
 
+  var t1 = new UIfx(
+    tick1,
+    {
+      volume: 1.0,
+      throttleMs: 100
+    }
+  );
 
+  // Test sound
+  t1.play();
 
-  
-
+  // Initialize count
   let beat = 1;
-
-  tickOne.play;
 
   // <Sound {tickOne}/>;
 
