@@ -75,16 +75,13 @@ function GenerateButtonsByFive(props) {
 {/* <button type="button" onClick={tickFirst.play()} */}
 function GenerateButtonsByOne(props) {
   let bpmVal = props.bpm;
-  let sound = props.firstBeat;
-  // sound.play();
-  console.log("bpmVal: " + bpmVal.file);
-  console.log("gernerate " + props.bpm);
+  // let sound = props.firstBeat;
   let start=props.bpm;
   let buttons = [];
   for (let i= (start-3); i <= (start+3); i +=1) {
     buttons.push(
       <div key={"b" + i}>
-       <button type="button" onClick={metronome.bind(props)} className="btn btn-style">{i} BPM</button>
+       <button type="button" onClick={metronome.bind(props.bpm)} className="btn btn-style">{i} BPM</button>
       </div>
     );
   }
@@ -93,8 +90,17 @@ function GenerateButtonsByOne(props) {
   )
 }
 
+function bpmChange(event) {
+  console.log("bpmChange func called: " + event.bpm);
+  // this.setState({bpm: event.bpm});
+}
+
 function metronome(props) {
-  let currBPM = this.bpm;
+  let currBPM = props.bpm;
+
+  console.log("Setting bpm: " + props.bpm);
+  bpmChange(props);
+
   console.log("--------------------click");
   console.log("currBPM: " + currBPM);
   console.log("Tick1 file: " + tick1);
