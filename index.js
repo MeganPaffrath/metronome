@@ -98,18 +98,21 @@ function metronome(props) {
   console.log("--------------------click");
   console.log("currBPM: " + currBPM);
   console.log("Tick1 file: " + tick1);
+  let timebetween = 60 / currBPM * 1000;
+  console.log("Time between ticks(ms): " + timebetween);
+
+  // Gather sounds
   var tickOne = new Audio({tick1}); // can I do this?
   console.log("tickOne = " + tickOne);
-  var tickNorm = new Audio({tick});
+  // var tickNorm = new Audio({tick});
 
-  let timebetween = 60 / currBPM * 1000;
 
- 
-  console.log("Time between ticks(ms): " + timebetween);
+
+  
 
   let beat = 1;
 
-  tickOne.play();
+  tickOne.play;
 
   // <Sound {tickOne}/>;
 
@@ -148,6 +151,9 @@ class App extends React.Component {
 
     const title = <Title />;
     let halves = <Halves bpm={this.state.bpm} beatOne = {this.state.firstBeat} />
+
+    // HOW TO PLAY THE BEAT
+    this.state.firstBeat.play(); 
 
     return (
       <main className="no-extras">
