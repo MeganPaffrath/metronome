@@ -34,6 +34,9 @@ function Title(props) {
 
 function Halves(props) {
   console.log(props.bpm);
+  console.log("Sound for half: " + props.firstBeat);
+  let sound = props.firstBeat;
+  // sound.play();
   return [
     <div key="d1" className="box-left">
       <div className="box-content">
@@ -53,12 +56,13 @@ function Halves(props) {
 function GenerateButtonsByFive(props) {
   console.log(props.bpm);
   console.log("gernerate " + props.bpm);
+  // console.log("Sound: " + props.firstBeat);
   let start=props.bpm;
   let buttons = [];
   for (let i= (start-15); i <= (start+15); i +=5) {
     buttons.push(
       <div key={"b" + i}>
-       <button type="button" className="btn btn-style">{i} BPM</button>
+       <button type="button" onClick={metronome.bind(props)} className="btn btn-style">{i} BPM</button>
       </div>
     );
   }
@@ -73,7 +77,7 @@ function GenerateButtonsByOne(props) {
   let bpmVal = props.bpm;
   let sound = props.firstBeat;
   // sound.play();
-  console.log("bpmVal: " + bpmVal);
+  console.log("bpmVal: " + bpmVal.file);
   console.log("gernerate " + props.bpm);
   let start=props.bpm;
   let buttons = [];
@@ -90,22 +94,22 @@ function GenerateButtonsByOne(props) {
 }
 
 function metronome(props) {
-  let currBPM = props.bpm;
-
-  console.log("hi1");
-
-  console.log(tick1);
-  var tickOne = new Audio({tick1});
+  let currBPM = this.bpm;
+  console.log("--------------------click");
+  console.log("currBPM: " + currBPM);
+  console.log("Tick1 file: " + tick1);
+  var tickOne = new Audio({tick1}); // can I do this?
+  console.log("tickOne = " + tickOne);
   var tickNorm = new Audio({tick});
-  console.log("click");
 
   let timebetween = 60 / currBPM * 1000;
 
-  console.log("currBPM: " + this);
-  console.log(timebetween);
-  console.log("b");
+ 
+  console.log("Time between ticks(ms): " + timebetween);
 
   let beat = 1;
+
+  tickOne.play();
 
   // <Sound {tickOne}/>;
 
