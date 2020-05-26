@@ -9,17 +9,18 @@ import UIfx from 'uifx';
 import tick1 from "./src/audio/tick1.wav";
 import tick from "./src/audio/tick2.wav";
 
-let vol = 0.6;
-console.log(typeof volume);
+// DELETE THIS----------------------
+// let vol = 0.6;
 
-const tickFirst = new UIfx(
-  tick1,
-  {
-    volume: 1.0,
-    throttleMs: 100
-  }
-)
 
+// const tickFirst = new UIfx(
+//   tick1,
+//   {
+//     volume: 1.0,
+//     throttleMs: 100
+//   }
+// )
+// DELETE THIS^^^^^^^^^^^^^^^^^^^^^^^
 
 
 function Title(props) {
@@ -47,6 +48,8 @@ function Halves(props) {
   ]
 }
 
+
+{/* <button type="button" onClick={tickFirst.play()}  */}
 function GenerateButtonsByFive(props) {
   console.log(props.bpm);
   console.log("gernerate " + props.bpm);
@@ -55,7 +58,7 @@ function GenerateButtonsByFive(props) {
   for (let i= (start-15); i <= (start+15); i +=5) {
     buttons.push(
       <div key={"b" + i}>
-       <button type="button" onClick={tickFirst.play()} className="btn btn-style">{i} BPM</button>
+       <button type="button" className="btn btn-style">{i} BPM</button>
       </div>
     );
   }
@@ -65,6 +68,7 @@ function GenerateButtonsByFive(props) {
 }
 
 // onClick={this.metronome.bind(props.bpm)}
+{/* <button type="button" onClick={tickFirst.play()} */}
 function GenerateButtonsByOne(props) {
   let bpmVal = props.bpm;
   let sound = props.firstBeat;
@@ -76,7 +80,7 @@ function GenerateButtonsByOne(props) {
   for (let i= (start-3); i <= (start+3); i +=1) {
     buttons.push(
       <div key={"b" + i}>
-       <button type="button" onClick={tickFirst.play()} onClick={metronome.bind(props)} className="btn btn-style">{i} BPM</button>
+       <button type="button" onClick={metronome.bind(props)} className="btn btn-style">{i} BPM</button>
       </div>
     );
   }
