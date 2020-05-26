@@ -102,36 +102,35 @@ function metronome(props) {
   console.log("Time between ticks(ms): " + timebetween);
 
   // Gather sounds
-  var tickOne = new Audio({tick1}); // can I do this?
-  console.log("tickOne = " + tickOne);
-  // var tickNorm = new Audio({tick});
-
-  var t1 = new UIfx(
+  var tickOne = new UIfx(
     tick1,
     {
       volume: 1.0,
       throttleMs: 100
     }
   );
+  var tickNorm = new UIfx(
+    tick,
+    {
+      volume: 0.8,
+      throttleMs: 100
+    }
+  );
 
   // Test sound
-  t1.play();
+  // tickOne.play();
 
   // Initialize count
   let beat = 1;
 
-  // <Sound {tickOne}/>;
-
-  // tickOne.play(tickOne);
-
-  // let beats = setInterval(function() {
-  //   if (beat%4 == 1) {
-  //     tick1.play(tick1);
-  //   } else {
-  //     tick.play(tick);
-  //   }
-  //   beat++;
-  // }, timebetween);
+  let beats = setInterval(function() {
+    if (beat%4 == 1) {
+      tickOne.play();
+    } else {
+      tickNorm.play();
+    }
+    beat++;
+  }, timebetween);
 }
 
 class App extends React.Component {
