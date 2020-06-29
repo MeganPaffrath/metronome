@@ -5,9 +5,6 @@ import ReactDOM from "react-dom";
 import Sound from "react-sound";
 import UIfx from 'uifx';
 
-// Comonents
-import Halves from "./Halves";
-
 // Ticks
 import tick1 from "./src/audio/tick1.wav";
 import tick from "./src/audio/tick2.wav";
@@ -35,7 +32,7 @@ function Title(props) {
   )
 }
 
-function OriginalHalves(props) {
+function Halves(props) {
   console.log(props.bpm);
   console.log("Sound for half: " + props.firstBeat);
   let sound = props.firstBeat;
@@ -164,16 +161,15 @@ class App extends React.Component {
 
 
     const title = <Title />;
-    let originalHalves = <OriginalHalves bpm={this.state.bpm} beatOne = {this.state.firstBeat} />
+    let halves = <Halves bpm={this.state.bpm} beatOne = {this.state.firstBeat} />
 
     // HOW TO PLAY THE BEAT
     this.state.firstBeat.play();
 
-    // {originalHalves} where <halves is
     return (
       <main className="no-extras">
         {title}
-        <Halves bpm={this.state.bpm}/>
+        {halves}
       </main>
     );
   }
