@@ -40,10 +40,13 @@ class PlayMetronome extends React.Component {
     // Get ticks
     let tick1 = this.state.firstBeat;
     let tick = this.state.otherBeats;
+
     // this.state.firstBeat.play();
-    tick1.play();
+    // tick1.play();
 
 
+
+/* SetInterval Approach (approach 1): */
     // get time between clicks
     let timebetween = 60 / currBPM * 1000;
 
@@ -53,15 +56,14 @@ class PlayMetronome extends React.Component {
     let beats = setInterval(function() {
       if (beat%4 == 1) {
         tick1.play();
+        console.log("Beat one for " + currBPM + " BPM");
       } else {
         tick.play();
       }
       beat++;
     }, timebetween);
-
-
+/**/
   }
-
 
   render() {
     // HOW TO PLAY THE BEAT
@@ -73,9 +75,7 @@ class PlayMetronome extends React.Component {
     return [
 
     ];
-
   }
-
 }
 
 export default PlayMetronome;
@@ -141,5 +141,10 @@ OLD CODE:
 //   }
 // )
 // DELETE THIS^^^^^^^^^^^^^^^^^^^^^^^
+
+
+// tick1: <Sound url={tick1}
+//   playStatus={Sound.status.PLAYING}
+//   playFromPosition={0 /* in milliseconds
 
 */
