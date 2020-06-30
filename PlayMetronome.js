@@ -22,6 +22,13 @@ class PlayMetronome extends React.Component {
           volume: 1.0,
           throttleMs: 100
         }
+      ),
+      otherBeats: new UIfx(
+        tick,
+        {
+          volume: 0.5,
+          throttleMs: 100
+        }
       )
     };
   }
@@ -30,12 +37,27 @@ class PlayMetronome extends React.Component {
     let currBPM = this.props.bpm;
     console.log("\tPlaying the beat at " + currBPM + " BPM");
 
-    // play the beat
-    this.state.firstBeat.play();
+    // Get ticks
+    let tick1 = this.state.firstBeat;
+    let tick = this.state.otherBeats;
+    // this.state.firstBeat.play();
+    tick1.play();
 
 
     // get time between clicks
     let timebetween = 60 / currBPM * 1000;
+
+    // Initialize count
+    let beat = 1;
+
+    let beats = setInterval(function() {
+      if (beat%4 == 1) {
+        tick1.play();
+      } else {
+        tick.play();
+      }
+      beat++;
+    }, timebetween);
 
 
   }
