@@ -7,24 +7,11 @@ import UIfx from 'uifx';
 
 // Comonents
 import Halves from "./Halves";
+import PlayMetronome from "./PlayMetronome";
 
 // Ticks
 import tick1 from "./src/audio/tick1.wav";
 import tick from "./src/audio/tick2.wav";
-
-// DELETE THIS----------------------
-// let vol = 0.6;
-
-
-// const tickFirst = new UIfx(
-//   tick1,
-//   {
-//     volume: 1.0,
-//     throttleMs: 100
-//   }
-// )
-// DELETE THIS^^^^^^^^^^^^^^^^^^^^^^^
-
 
 function Title(props) {
   return (
@@ -34,47 +21,6 @@ function Title(props) {
     </div>
   );
 }
-
-// function metronome(props) {
-//   let currBPM = props.bpm;
-//
-//   console.log("Setting bpm: " + props.bpm);
-//   bpmChange(props);
-//
-//   console.log("--------------------click");
-//   console.log("currBPM: " + currBPM);
-//   console.log("Tick1 file: " + tick1);
-//   let timebetween = 60 / currBPM * 1000;
-//   console.log("Time between ticks(ms): " + timebetween);
-//
-//   // Gather sounds
-//   var tickOne = new UIfx(
-//     tick1,
-//     {
-//       volume: 1.0,
-//       throttleMs: 100
-//     }
-//   );
-//   var tickNorm = new UIfx(
-//     tick,
-//     {
-//       volume: 0.8,
-//       throttleMs: 100
-//     }
-//   );
-//
-//   // Initialize count
-//   let beat = 1;
-//
-//   let beats = setInterval(function() {
-//     if (beat%4 == 1) {
-//       tickOne.play();
-//     } else {
-//       tickNorm.play();
-//     }
-//     beat++;
-//   }, timebetween);
-// }
 
 class App extends React.Component {
   constructor(props) {
@@ -125,10 +71,11 @@ class App extends React.Component {
 
   render() {
     const title = <Title />;
+    const beeps = <PlayMetronome bpm={this.state.bpm}/>;
 
-    // HOW TO PLAY THE BEAT
-    this.state.firstBeat.play();
     this.playMetronome(this.state);
+
+
 
     // {originalHalves} where <halves is
     return (
@@ -136,6 +83,7 @@ class App extends React.Component {
         {title}
         <Halves bpm={this.state.bpm}
         bpmBind={this.clickHandler.bind(this)}/>
+        {beeps}
       </main>
     );
   }
