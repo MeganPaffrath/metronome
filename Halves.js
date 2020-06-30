@@ -10,11 +10,6 @@ class Halves extends React.Component {
     };
   }
 
-  // Generate buttons by one
-
-
-  // <button type="button" onClick={metronome.bind(props.bpm)} className="btn btn-style">{i} BPM</button>
-
   bpmHandler(newBPM) {
     console.log("rec: " + newBPM);
     console.log(newBPM);
@@ -32,7 +27,7 @@ class Halves extends React.Component {
     for (let i= (startByOne-3); i <= (startByOne+3); i +=1) {
       buttonsByOne.push(
         <div key={"b" + i}>
-         <button type="button" onClick={that.bpmHandler.bind(that, i)} className="btn btn-style">{i} BPM</button>
+          <button type="button" onClick={that.bpmHandler.bind(that, i)} className="btn btn-style">{i} BPM</button>
         </div>
       );
     }
