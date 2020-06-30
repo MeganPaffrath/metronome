@@ -15,8 +15,15 @@ class Halves extends React.Component {
 
   // <button type="button" onClick={metronome.bind(props.bpm)} className="btn btn-style">{i} BPM</button>
 
+  bpmHandler(newBPM) {
+    console.log("rec: " + newBPM);
+    console.log(newBPM);
+    this.props.bpmBind(newBPM);
+  }
+
 
   render() {
+    let that = this;
     console.log("BPM is: " + this.props.bpm);
 
     // Generate buttons by one
@@ -25,7 +32,7 @@ class Halves extends React.Component {
     for (let i= (startByOne-3); i <= (startByOne+3); i +=1) {
       buttonsByOne.push(
         <div key={"b" + i}>
-         <button type="button" className="btn btn-style">{i} BPM</button>
+         <button type="button" onClick={that.bpmHandler.bind(that, i)} className="btn btn-style">{i} BPM</button>
         </div>
       );
     }
@@ -36,7 +43,7 @@ class Halves extends React.Component {
     for (let i= (startByFive-15); i <= (startByFive+15); i +=5) {
       buttonsByFive.push(
         <div key={"b" + i}>
-         <button type="button" className="btn btn-style">{i} BPM</button>
+         <button type="button" onClick={that.bpmHandler.bind(that, i)} className="btn btn-style">{i} BPM</button>
         </div>
       );
     }

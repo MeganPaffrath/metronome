@@ -160,7 +160,14 @@ class App extends React.Component {
         };
     }
 
+    clickHandler(choice) {
+      console.log(`You Clicked ${choice}`);
+      this.setState({bpm: choice});
+    }
+
   render() {
+
+
 
 
     const title = <Title />;
@@ -173,7 +180,8 @@ class App extends React.Component {
     return (
       <main className="no-extras">
         {title}
-        <Halves bpm={this.state.bpm}/>
+        <Halves bpm={this.state.bpm}
+        bpmBind={this.clickHandler.bind(this)}/>
       </main>
     );
   }
